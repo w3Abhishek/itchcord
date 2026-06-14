@@ -22,7 +22,7 @@
 **itchcord** automatically detects when you're playing an itch.io game and displays it as Discord Rich Presence — so your friends can see what you're playing, whether it's a desktop app or a browser game.
 
 <p align="center">
-    <img src="assets/itchcord_screenshot.png" alt="itchcord logo" width="200">
+    <img src="assets/itchcord_screenshot.png" alt="itchcord logo">
 </p>
 
 ## Features
