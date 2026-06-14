@@ -1,76 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>itchcord - Discord Rich Presence for itch.io</title>
     <meta name="description" content="Show off what you're playing on itch.io natively in Discord.">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- TailwindCSS v4 Browser CDN -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-    <nav>
-        <div class="logo">
-            <img src="logo.svg" alt="itchcord logo">
-            <span>itchcord</span>
-        </div>
-        <div class="links">
-            <a href="https://github.com/w3Abhishek/itchcord" target="_blank">GitHub</a>
-            <a href="#about">About Developer</a>
+<body class="bg-background text-foreground min-h-screen font-sans selection:bg-primary/20 antialiased overflow-x-hidden">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full border-b border-border bg-background/80 backdrop-blur-md z-50 transition-all">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3 font-bold text-xl tracking-tight">
+                <img src="logo.svg" alt="itchcord" class="w-8 h-8 drop-shadow-md">
+                <span>itchcord</span>
+            </div>
+            <div class="flex items-center gap-6 font-medium text-sm">
+                <a href="https://github.com/w3Abhishek/itchcord" target="_blank" class="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                    <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                </a>
+                <a href="#about" class="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                    <i data-lucide="user" class="w-4 h-4"></i> About Developer
+                </a>
+            </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <img src="logo.svg" alt="itchcord animated logo" class="hero-logo">
-            <h1>Level up your <span class="highlight">itch.io</span> status.</h1>
-            <p>Automatically detect and display your itch.io games on Discord Rich Presence. Works for desktop apps and browser games.</p>
-            
-            <div class="download-section">
-                <a href="https://github.com/w3Abhishek/itchcord/releases/latest" id="primary-download" class="btn btn-primary">
-                    <span class="icon">⬇️</span>
-                    <span id="download-text">Download (Detecting OS...)</span>
-                </a>
-                <div class="alt-downloads">
-                    <a href="#" id="dl-windows">Windows</a> • 
-                    <a href="#" id="dl-macos">macOS</a> • 
-                    <a href="#" id="dl-linux">Linux</a>
-                </div>
+    <!-- Hero -->
+    <main class="relative pt-32 pb-20 px-6 flex flex-col items-center text-center z-10">
+        <!-- Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
+        <img src="logo.svg" alt="itchcord logo" class="w-32 h-32 mb-8 drop-shadow-[0_0_30px_rgba(250,92,92,0.5)] animate-[bounce_3s_infinite_ease-in-out]">
+        
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-foreground leading-tight">
+            Level up your <span class="text-primary">itch.io</span> status.
+        </h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mb-10 leading-relaxed">
+            Automatically detect and display your itch.io games natively on Discord Rich Presence. Works effortlessly for both desktop apps and browser games.
+        </p>
+        
+        <div class="flex flex-col items-center gap-4">
+            <a href="https://github.com/w3Abhishek/itchcord/releases/latest" id="primary-download" class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-[0_0_20px_rgba(250,92,92,0.4)] hover:shadow-[0_0_30px_rgba(250,92,92,0.6)] hover:-translate-y-1">
+                <i data-lucide="download" class="w-5 h-5"></i>
+                <span id="download-text">Download (Detecting OS...)</span>
+            </a>
+            <div class="text-sm text-muted-foreground mt-3 flex items-center justify-center flex-wrap gap-4 font-medium">
+                <a href="#" id="dl-windows" class="hover:text-primary transition-colors flex items-center gap-1.5"><i data-lucide="monitor" class="w-4 h-4"></i> Windows</a>
+                <span class="opacity-30">•</span>
+                <a href="#" id="dl-macos" class="hover:text-primary transition-colors flex items-center gap-1.5"><i data-lucide="apple" class="w-4 h-4"></i> macOS</a>
+                <span class="opacity-30">•</span>
+                <a href="#" id="dl-linux" class="hover:text-primary transition-colors flex items-center gap-1.5"><i data-lucide="terminal" class="w-4 h-4"></i> Linux</a>
             </div>
         </div>
-        <div class="hero-bg"></div>
-    </header>
+    </main>
 
-    <section class="features">
-        <div class="feature-card">
-            <h3>Desktop & Browser</h3>
-            <p>Whether you're playing a downloaded game or streaming a web build, itchcord detects it seamlessly.</p>
+    <!-- Features -->
+    <section class="max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+        <div class="bg-card/50 backdrop-blur-sm border border-border p-8 rounded-3xl shadow-lg hover:border-primary/50 hover:shadow-primary/10 transition-all group">
+            <div class="w-14 h-14 bg-primary/10 text-primary border border-primary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
+                <i data-lucide="monitor-smartphone" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 tracking-tight">Desktop & Browser</h3>
+            <p class="text-muted-foreground leading-relaxed">Whether you're playing a downloaded game or streaming a web build, itchcord detects it seamlessly.</p>
         </div>
-        <div class="feature-card">
-            <h3>Zero Configuration</h3>
-            <p>Just run it in the background. No manual setup needed for thousands of games.</p>
+        <div class="bg-card/50 backdrop-blur-sm border border-border p-8 rounded-3xl shadow-lg hover:border-primary/50 hover:shadow-primary/10 transition-all group">
+            <div class="w-14 h-14 bg-primary/10 text-primary border border-primary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
+                <i data-lucide="zap" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 tracking-tight">Zero Configuration</h3>
+            <p class="text-muted-foreground leading-relaxed">Just run it in the background. No manual setup needed for thousands of games across the itch platform.</p>
         </div>
-        <div class="feature-card">
-            <h3>Cross-Platform</h3>
-            <p>Available for Windows, macOS, and Linux. Built with performance in mind to stay invisible while gaming.</p>
+        <div class="bg-card/50 backdrop-blur-sm border border-border p-8 rounded-3xl shadow-lg hover:border-primary/50 hover:shadow-primary/10 transition-all group">
+            <div class="w-14 h-14 bg-primary/10 text-primary border border-primary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
+                <i data-lucide="layers" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 tracking-tight">Cross-Platform</h3>
+            <p class="text-muted-foreground leading-relaxed">Available for Windows, macOS, and Linux. Built with performance in mind to stay completely invisible while gaming.</p>
         </div>
     </section>
 
-    <section id="about" class="about">
-        <h2>About the Developer</h2>
-        <p>Built with ❤️ by <strong>Abhishek Verma (vrma)</strong>.</p>
-        <p>I build tools to make the gaming experience better. Support the development of itchcord and other open source projects!</p>
-        <div class="socials">
-            <a href="https://github.com/w3Abhishek" target="_blank" class="btn btn-secondary">GitHub</a>
-            <a href="https://x.com/pyvrma" target="_blank" class="btn btn-secondary">𝕏 (Twitter)</a>
-            <a href="https://ko-fi.com/vrma" target="_blank" class="btn btn-kofi">☕ Support me on Ko-fi</a>
+    <!-- About Developer -->
+    <section id="about" class="max-w-4xl mx-auto px-6 py-20 text-center relative z-10">
+        <div class="bg-card/80 backdrop-blur-md border border-border rounded-[2.5rem] p-12 shadow-xl relative overflow-hidden">
+            <!-- Decorative gradient -->
+            <div class="absolute -top-32 -right-32 w-64 h-64 bg-primary/10 rounded-full blur-[80px]"></div>
+            <div class="absolute -bottom-32 -left-32 w-64 h-64 bg-primary/10 rounded-full blur-[80px]"></div>
+            
+            <div class="relative w-24 h-24 bg-background border-2 border-border rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg">
+                <i data-lucide="code-2" class="w-10 h-10 text-primary"></i>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 tracking-tight">About the Developer</h2>
+            <p class="text-lg text-muted-foreground mb-10 max-w-xl mx-auto leading-relaxed">
+                Built with ❤️ by <strong class="text-foreground">Abhishek Verma (vrma)</strong>.<br>
+                I build tools to make the gaming experience better.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://github.com/w3Abhishek" target="_blank" class="inline-flex items-center gap-2.5 px-6 py-3 bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-sm">
+                    <i data-lucide="github" class="w-5 h-5"></i> GitHub
+                </a>
+                <a href="https://x.com/pyvrma" target="_blank" class="inline-flex items-center gap-2.5 px-6 py-3 bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-sm">
+                    <i data-lucide="twitter" class="w-5 h-5"></i> 𝕏 (Twitter)
+                </a>
+                <a href="https://ko-fi.com/vrma" target="_blank" class="inline-flex items-center gap-2.5 px-6 py-3 bg-[#FF5E5B] text-white hover:bg-[#ff7572] rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-lg shadow-[#FF5E5B]/25">
+                    <i data-lucide="coffee" class="w-5 h-5"></i> Support me on Ko-fi
+                </a>
+            </div>
         </div>
     </section>
 
-    <footer>
+    <footer class="border-t border-border py-10 text-center text-sm font-medium text-muted-foreground relative z-10">
         <p>&copy; 2026 Abhishek Verma. Not affiliated with itch.io or Discord.</p>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>
