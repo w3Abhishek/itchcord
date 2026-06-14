@@ -6,11 +6,88 @@
     <title>itchcord - Discord Rich Presence for itch.io</title>
     <meta name="description" content="Show off what you're playing on itch.io natively in Discord.">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <!-- TailwindCSS v4 Browser CDN -->
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style type="text/tailwindcss">
+        @theme inline {
+            --color-background: var(--background);
+            --color-foreground: var(--foreground);
+            --color-card: var(--card);
+            --color-card-foreground: var(--card-foreground);
+            --color-popover: var(--popover);
+            --color-popover-foreground: var(--popover-foreground);
+            --color-primary: var(--primary);
+            --color-primary-foreground: var(--primary-foreground);
+            --color-secondary: var(--secondary);
+            --color-secondary-foreground: var(--secondary-foreground);
+            --color-muted: var(--muted);
+            --color-muted-foreground: var(--muted-foreground);
+            --color-accent: var(--accent);
+            --color-accent-foreground: var(--accent-foreground);
+            --color-destructive: var(--destructive);
+            --color-destructive-foreground: var(--destructive-foreground);
+            --color-border: var(--border);
+            --color-input: var(--input);
+            --color-ring: var(--ring);
+        }
+
+        :root {
+            --background: oklch(0.9881 0 0);
+            --foreground: oklch(0.2789 0.0091 285.7942);
+            --card: oklch(1.0000 0 0);
+            --card-foreground: oklch(0.2789 0.0091 285.7942);
+            --popover: oklch(1.0000 0 0);
+            --popover-foreground: oklch(0.2789 0.0091 285.7942);
+            --primary: #FA5C5C;
+            --primary-foreground: oklch(1.0000 0 0);
+            --secondary: oklch(0.9614 0.0013 286.3750);
+            --secondary-foreground: oklch(0.2789 0.0091 285.7942);
+            --muted: oklch(0.9731 0 0);
+            --muted-foreground: oklch(0.5370 0.0140 280.8555);
+            --accent: #FA5C5C;
+            --accent-foreground: oklch(1.0000 0 0);
+            --destructive: oklch(0.5156 0.1810 22.5393);
+            --destructive-foreground: oklch(1.0000 0 0);
+            --border: oklch(0.9042 0.0027 286.3457);
+            --input: oklch(0.9614 0.0013 286.3750);
+            --ring: #FA5C5C;
+        }
+
+        .dark {
+            /* Discord Dark Mode background */
+            --background: oklch(0.3225 0.0107 278.2517); 
+            --foreground: oklch(1.0000 0 0);
+            --card: oklch(0.3502 0.0122 279.2835);
+            --card-foreground: oklch(1.0000 0 0);
+            --popover: oklch(0.3502 0.0122 279.2835);
+            --popover-foreground: oklch(1.0000 0 0);
+            --primary: #FA5C5C;
+            --primary-foreground: oklch(1.0000 0 0);
+            --secondary: oklch(0.3779 0.0118 285.8207);
+            --secondary-foreground: oklch(1.0000 0 0);
+            --muted: oklch(0.3066 0.0108 278.2166);
+            --muted-foreground: oklch(0.7230 0.0087 278.5820);
+            --accent: #FA5C5C;
+            --accent-foreground: oklch(1.0000 0 0);
+            --destructive: oklch(0.8004 0.1141 23.1850);
+            --destructive-foreground: oklch(1.0000 0 0);
+            --border: oklch(0.3690 0.0103 278.3345);
+            --input: oklch(0.3066 0.0108 278.2166);
+            --ring: #FA5C5C;
+        }
+
+        @layer base {
+            * {
+                @apply border-border outline-ring/50;
+            }
+            body {
+                @apply bg-background text-foreground;
+            }
+        }
+    </style>
 </head>
 <body class="bg-background text-foreground min-h-screen font-sans selection:bg-primary/20 antialiased overflow-x-hidden">
     <!-- Navbar -->
