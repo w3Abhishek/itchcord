@@ -22,8 +22,7 @@
 **itchcord** automatically detects when you're playing an itch.io game and displays it as Discord Rich Presence — so your friends can see what you're playing, whether it's a desktop app or a browser game.
 
 <p align="center">
-  <em><!-- Screenshot placeholder: Add a screenshot of Discord showing itchcord Rich Presence here --></em><br>
-  <code>📸 Screenshot coming soon</code>
+    <img src="assets/itchcord_screenshot.png" alt="itchcord logo" width="200">
 </p>
 
 ## Features
@@ -57,7 +56,7 @@ itchcord uses **three detection sources** to find what you're playing:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/itchcord.git
+   git clone https://github.com/w3Abhishek/itchcord.git
    cd itchcord
    ```
 
@@ -133,40 +132,6 @@ itchcord connects to the Discord API using a registered application. To use the 
 | ✅ Windows | Full support | Full support | Full support |
 | ✅ Linux | Full support | Full support | Requires appindicator |
 | ✅ macOS | Full support | Full support | Full support |
-
-## How It Works
-
-```
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│  itch.io Desktop │     │  Process Scanner │     │ Chrome Extension │
-│    Log Watcher   │     │    (psutil)      │     │  (WebSocket)     │
-└────────┬─────────┘     └────────┬─────────┘     └────────┬─────────┘
-         │                        │                         │
-         └────────────┬───────────┴─────────────────────────┘
-                      │
-              ┌───────▼────────┐
-              │  Game Resolver │
-              │  (main.py)     │
-              └───────┬────────┘
-                      │
-              ┌───────▼────────┐
-              │  pypresence    │
-              │  Discord RPC   │
-              └───────┬────────┘
-                      │
-              ┌───────▼────────┐
-              │    Discord     │
-              │  Rich Presence │
-              └────────────────┘
-```
-
-1. **Detection** — Three sources independently watch for itch.io games: the itch desktop app log file, system process scanning via `psutil`, and a Chrome extension that communicates over a local WebSocket.
-
-2. **Resolution** — The main process aggregates signals from all three sources and determines which game is currently active, with priority given to the most recently detected source.
-
-3. **Display** — Game information is sent to Discord via `pypresence`, updating your Rich Presence with the game name, elapsed time, and source indicator (desktop or browser icon).
-
-4. **System Tray** — A `pystray` icon sits in your system tray, providing quick access to status information and controls.
 
 ## Developer & Contact
 
