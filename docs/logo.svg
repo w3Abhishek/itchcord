@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 680 680">
+<title>itchcord animated logo</title>
+<desc>Animated itchcord logo — ghost bobs up and down, chat bubble dots pulse like Discord typing indicator</desc>
+
+<defs>
+  <clipPath id="rc3">
+    <rect x="140" y="140" width="400" height="400" rx="80"/>
+  </clipPath>
+  <style>
+    @keyframes bob {
+      0%, 100% { transform: translate(340px, 345px); }
+      50% { transform: translate(340px, 333px); }
+    }
+    @keyframes shadow-pulse {
+      0%, 100% { transform: translate(340px, 490px) scale(1); opacity: 0.18; }
+      50% { transform: translate(340px, 490px) scale(0.82); opacity: 0.08; }
+    }
+    @keyframes dot1 {
+      0%, 60%, 100% { opacity: 0.3; r: 4; }
+      20% { opacity: 1; r: 5; }
+    }
+    @keyframes dot2 {
+      0%, 20%, 100% { opacity: 0.3; r: 4; }
+      40% { opacity: 1; r: 5; }
+    }
+    @keyframes dot3 {
+      0%, 40%, 100% { opacity: 0.3; r: 4; }
+      60% { opacity: 1; r: 5; }
+    }
+    .ghost { animation: bob 2.4s ease-in-out infinite; }
+    .shadow { animation: shadow-pulse 2.4s ease-in-out infinite; }
+    .d1 { animation: dot1 1.2s ease-in-out infinite; }
+    .d2 { animation: dot2 1.2s ease-in-out infinite; }
+    .d3 { animation: dot3 1.2s ease-in-out infinite; }
+  </style>
+</defs>
+
+<!-- background -->
+<rect x="140" y="140" width="400" height="400" rx="80" fill="#1a1a2e"/>
+
+<!-- bg blobs -->
+<g clip-path="url(#rc3)">
+  <circle cx="260" cy="520" r="120" fill="#12122a" opacity="0.5"/>
+  <circle cx="420" cy="500" r="90" fill="#12122a" opacity="0.4"/>
+</g>
+
+<!-- shadow under ghost -->
+<ellipse class="shadow" cx="0" cy="0" rx="72" ry="12" fill="#000"/>
+
+<!-- ghost group bobs -->
+<g class="ghost">
+  <!-- body -->
+  <path d="
+    M0,-105
+    C-58,-105 -95,-65 -95,-15
+    L-95,75
+    C-95,75 -75,58 -55,75
+    C-35,92 -15,58 0,75
+    C15,92 35,58 55,75
+    C75,92 95,75 95,75
+    L95,-15
+    C95,-65 58,-105 0,-105
+    Z
+  " fill="#5865F2"/>
+
+  <!-- eyes whites -->
+  <ellipse cx="-28" cy="-5" rx="16" ry="19" fill="white"/>
+  <ellipse cx="28" cy="-5" rx="16" ry="19" fill="white"/>
+  <!-- pupils -->
+  <circle cx="-25" cy="-3" r="6" fill="#1a1a2e"/>
+  <circle cx="31" cy="-3" r="6" fill="#1a1a2e"/>
+  <!-- shine -->
+  <circle cx="-23" cy="-5" r="2" fill="white"/>
+  <circle cx="33" cy="-5" r="2" fill="white"/>
+
+  <!-- smile -->
+  <path d="M-18,28 Q0,42 18,28" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- chat bubble -->
+  <g transform="translate(62, -72)">
+    <rect x="0" y="0" width="48" height="36" rx="8" fill="#FA5C5C"/>
+    <polygon points="8,36 20,36 14,48" fill="#FA5C5C"/>
+    <!-- animated dots -->
+    <circle class="d1" cx="14" cy="18" r="4" fill="white"/>
+    <circle class="d2" cx="24" cy="18" r="4" fill="white"/>
+    <circle class="d3" cx="34" cy="18" r="4" fill="white"/>
+  </g>
+</g>
+
+<!-- border -->
+<rect x="140" y="140" width="400" height="400" rx="80" fill="none" stroke="#5865F2" stroke-width="2.5" opacity="0.3"/>
+</svg>
