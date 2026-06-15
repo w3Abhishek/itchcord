@@ -1,44 +1,35 @@
 name: Build Releases
-
 on:
   push:
     tags:
       - 'v*'
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-
     steps:
     - uses: actions/checkout@v4
-
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pyinstaller
-
-    - name: Linux specific setup (tkinter/wx)
+    - name: Linux specific setup
       if: runner.os == 'Linux'
       run: |
         sudo apt-get update
         sudo apt-get install -y python3-tk
-
     - name: Build with PyInstaller
       run: pyinstaller itchcord.spec
-
     - name: Rename binary for release
       shell: bash
       run: |
@@ -47,20 +38,27 @@ jobs:
           mv itchcord.exe itchcord-windows.exe
         elif [ "${{ runner.os }}" = "macOS" ]; then
           mv itchcord itchcord-macos
+          zip itchcord-macos.zip itchcord-macos
+          rm itchcord-macos
         else
           mv itchcord itchcord-linux
+          chmod +x itchcord-linux
         fi
-
-    - name: Archive production artifacts
+    - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: itchcord-${{ runner.os }}
-        path: dist/itchcord*
-
+        path: |
+          dist/itchcord-windows.exe
+          dist/itchcord-linux
+          dist/itchcord-macos.zip
     - name: Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: dist/itchcord*
+        files: |
+          dist/itchcord-windows.exe
+          dist/itchcord-linux
+          dist/itchcord-macos.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
