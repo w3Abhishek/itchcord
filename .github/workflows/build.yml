@@ -39,12 +39,24 @@ jobs:
     - name: Build with PyInstaller
       run: pyinstaller itchcord.spec
 
+    - name: Rename binary for release
+      shell: bash
+      run: |
+        cd dist
+        if [ "${{ runner.os }}" = "Windows" ]; then
+          mv itchcord.exe itchcord-windows.exe
+        elif [ "${{ runner.os }}" = "macOS" ]; then
+          mv itchcord itchcord-macos
+        else
+          mv itchcord itchcord-linux
+        fi
+
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
         name: itchcord-${{ runner.os }}
         path: dist/itchcord*
-        
+
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
